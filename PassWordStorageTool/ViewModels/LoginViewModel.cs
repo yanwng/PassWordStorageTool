@@ -18,6 +18,9 @@ namespace PassWordStorageTool.ViewModels
         public LoginViewModel(User _user)
         {
             LoginUser = _user;
+            LoginUser.UserName = "admin";
+            LoginUser.PassWord = "123456";
+            LoginUser.Accounts.Add(new UserPassWordInfo("admin","123456","存储工具的账户密码","https://baidu.com"));
         }
 
         /// <summary>

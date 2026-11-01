@@ -9,9 +9,16 @@ namespace PassWordStorageTool.ViewModels
     {
         public User LoginUser { get; set { SetProperty(ref field, value); } }
 
-        public MainWindowViewModel( User user)
+        /// <summary>
+        /// 打开添加账户密码的弹窗
+        /// </summary>
+        public DelegateCommand OpenAddAccountPage => field ?? (field = new DelegateCommand(() => { DialogService.ShowDialog("AddAccountDialogView"); }));
+
+        public IDialogService DialogService { get; set; }
+        public MainWindowViewModel( User user,IDialogService dialogService)
         {
             LoginUser = user;
+            DialogService = dialogService;
             LoadAllUserPassWordInfo();
         }
 
@@ -23,6 +30,7 @@ namespace PassWordStorageTool.ViewModels
         {
             
         }
+
     }
 
 

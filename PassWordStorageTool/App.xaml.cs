@@ -1,5 +1,6 @@
 ﻿using PassWordStorageTool.Entitys;
 using PassWordStorageTool.Views;
+using PassWordStorageTool.Views.Pages;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -19,7 +20,8 @@ namespace PassWordStorageTool
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<User>();
-            
+            containerRegistry.RegisterForNavigation<PassWordRegionView>();
+            containerRegistry.RegisterDialog<AddAccountDialogView>();
         }
     }
 

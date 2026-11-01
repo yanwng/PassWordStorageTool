@@ -22,7 +22,7 @@ namespace PassWordStorageTool.Entitys
         /// <summary>
         /// 该用户所下保存的全部账户密码
         /// </summary>
-        public ObservableCollection<UserPassWordInfo> Accounts { get; set; }
+        public ObservableCollection<UserPassWordInfo> Accounts { get; set; } = new ObservableCollection<UserPassWordInfo>();
 
 
     }

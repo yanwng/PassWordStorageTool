@@ -17,9 +17,11 @@ namespace PassWordStorageTool.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IRegionManager regionManager)
         {
             InitializeComponent();
+            RegionManager.SetRegionManager(this, regionManager);
+            regionManager.RequestNavigate("MainRegion","PassWordRegionView");
         }
     }
 }

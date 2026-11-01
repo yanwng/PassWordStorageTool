@@ -9,6 +9,14 @@ namespace PassWordStorageTool.Entitys
     /// </summary>
     public class UserPassWordInfo
     {
+        public UserPassWordInfo(string userName, string passWord, string description, string webSite)
+        {
+            UserName = userName;
+            PassWord = passWord;
+            Description = description;
+            WebSite = webSite;
+        }
+
         /// <summary>
         /// 用户名
         /// </summary>
@@ -25,5 +33,9 @@ namespace PassWordStorageTool.Entitys
         /// 那个网站的账户
         /// </summary>
         public string WebSite { get; set; }
+
+
+
+        
     }
 }

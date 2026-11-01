@@ -17,8 +17,14 @@
             <ColumnDefinition Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TextBlock Text="{Binding LoginUser.UserName}"></TextBlock>
+
+            <StackPanel Margin="50" HorizontalAlignment="Center">
+                <TextBlock Text="登录用户:"></TextBlock>
+                <TextBlock Text="{Binding LoginUser.UserName}"></TextBlock>
+            </StackPanel>
+
+            <Button Height="50" Width="100" Command="{Binding OpenAddAccountPage}">添加账户密码</Button>
         </StackPanel>
-        <ContentControl p:RegionManager.RegionName="MainRegion"/>
+        <ContentControl Grid.Column="1" p:RegionManager.RegionName="MainRegion"/>
     </Grid>
 </Window>
