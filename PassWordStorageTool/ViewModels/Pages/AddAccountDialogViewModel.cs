@@ -70,7 +70,7 @@ namespace PassWordStorageTool.ViewModels.Pages
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-           AddUserPassWordInfo  =  parameters.GetValue<UserPassWordInfo>("parameter");
+           AddUserPassWordInfo  =  parameters.GetValue<UserPassWordInfo>("parameter")?? AddUserPassWordInfo;
         }
     }
 }
