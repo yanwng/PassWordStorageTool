@@ -24,10 +24,23 @@ namespace PassWordStorageTool.ViewModels.Pages
         /// </summary>
         public UserPassWordInfo AddUserPassWordInfo { get; set { SetProperty(ref field, value); } } = new UserPassWordInfo();
 
+        public UserPassWordInfo preUserPassWordInfo;
+
         /// <summary>
         /// 退出添加界面
         /// </summary>
-        public DelegateCommand<Window> Exit => field ?? (field = new DelegateCommand<Window>(win => { win.Close(); }));
+        public DelegateCommand<Window> Exit => field ?? (field = new DelegateCommand<Window>(win => 
+        {
+            if (preUserPassWordInfo!=null)
+            {
+                AddUserPassWordInfo.UserName= preUserPassWordInfo.UserName;
+                AddUserPassWordInfo.PassWord= preUserPassWordInfo.PassWord;
+                AddUserPassWordInfo.Description= preUserPassWordInfo.Description;
+                AddUserPassWordInfo.WebSite= preUserPassWordInfo.WebSite;
+
+            }
+            win.Close(); 
+        }));
 
         public DelegateCommand<Window> Submit => field ?? (field = new DelegateCommand<Window>(Submit_method));
 
@@ -71,6 +84,11 @@ namespace PassWordStorageTool.ViewModels.Pages
         public void OnDialogOpened(IDialogParameters parameters)
         {
            AddUserPassWordInfo  =  parameters.GetValue<UserPassWordInfo>("parameter")?? AddUserPassWordInfo;
+           if(AddUserPassWordInfo!=null)
+                preUserPassWordInfo = new UserPassWordInfo(AddUserPassWordInfo.UserName,
+                                                           AddUserPassWordInfo.PassWord,
+                                                           AddUserPassWordInfo.Description,
+                                                           AddUserPassWordInfo.WebSite);
         }
     }
 }

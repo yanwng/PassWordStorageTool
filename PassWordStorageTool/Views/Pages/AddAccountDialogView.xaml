@@ -25,11 +25,11 @@
             <StackPanel Height="300" Grid.Column="0" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock  Text="用户名"/>
-                    <TextBox Text="{Binding AddUserPassWordInfo.UserName}"></TextBox>
+                    <TextBox Text="{Binding AddUserPassWordInfo.UserName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock  Text="描述"/>
-                    <TextBox Text="{Binding AddUserPassWordInfo.Description}"></TextBox>
+                    <TextBox Text="{Binding AddUserPassWordInfo.Description,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </StackPanel>
                 <Button Margin="0,130" Width="80" 
                         Command="{Binding Exit}"
@@ -39,11 +39,11 @@
             <StackPanel Height="300" Grid.Column="1" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock  Text="密码"/>
-                    <TextBox Text="{Binding AddUserPassWordInfo.PassWord}"></TextBox>
+                    <TextBox Text="{Binding AddUserPassWordInfo.PassWord,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock  Text="网址"/>
-                    <TextBox Text="{Binding AddUserPassWordInfo.WebSite}"></TextBox>
+                    <TextBox Text="{Binding AddUserPassWordInfo.WebSite,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </StackPanel>
                 <Button Margin="0,130" Width="80"
                         Command="{Binding Submit}"
