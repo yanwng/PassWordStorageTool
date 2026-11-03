@@ -22,6 +22,9 @@ namespace PassWordStorageTool
             containerRegistry.RegisterSingleton<User>();
             containerRegistry.RegisterForNavigation<PassWordRegionView>();
             containerRegistry.RegisterDialog<AddAccountDialogView>();
+
+            //注册弹框内容父窗口
+            containerRegistry.RegisterDialogWindow<DialogParentWindow>();
         }
     }
 

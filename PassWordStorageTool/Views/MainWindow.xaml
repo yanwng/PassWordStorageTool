@@ -8,23 +8,27 @@
         xmlns:p="http://prismlibrary.com/"
         p:ViewModelLocator.AutoWireViewModel="True"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
+        Icon="/images/账户密码.ico"
+        WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
-        Height="800" Width="1200">
-    <Grid>
+        Height="800" Width="1200"
+        FontSize="18"
+        >
+  
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0" >
 
             <StackPanel Margin="50" HorizontalAlignment="Center">
                 <TextBlock Text="登录用户:"></TextBlock>
                 <TextBlock Text="{Binding LoginUser.UserName}"></TextBlock>
             </StackPanel>
 
-            <Button Height="50" Width="100" Command="{Binding OpenAddAccountPage}">添加账户密码</Button>
+            <Button Height="50" Width="100" Command="{Binding OpenAddAccountPage}">添加账户</Button>
         </StackPanel>
-        <ContentControl Grid.Column="1" p:RegionManager.RegionName="MainRegion"/>
+        <ContentControl Grid.Column="1" p:RegionManager.RegionName="MainRegion" Background="Transparent"/>
     </Grid>
 </Window>

@@ -16,6 +16,8 @@ namespace PassWordStorageTool.ViewModels.Pages
         public DelegateCommand<UserPassWordInfo> Updata => field ?? (new DelegateCommand<UserPassWordInfo>(Updata_method));
         public DelegateCommand<UserPassWordInfo> Delete => field ?? (new DelegateCommand<UserPassWordInfo>(Delete_method));
 
+        public DelegateCommand OpenAddAccountPage => field ?? (field = new DelegateCommand(() => { DialogService.ShowDialog("AddAccountDialogView"); }));
+
         /// <summary>
         /// 移除当前选择的一项
         /// </summary>
