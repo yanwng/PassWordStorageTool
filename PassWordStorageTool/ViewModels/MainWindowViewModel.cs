@@ -1,7 +1,12 @@
 ﻿using PassWordStorageTool.Entitys;
+using PassWordStorageTool.HelpClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace PassWordStorageTool.ViewModels
 {
@@ -15,11 +20,27 @@ namespace PassWordStorageTool.ViewModels
         public DelegateCommand OpenAddAccountPage => field ?? (field = new DelegateCommand(() => { DialogService.ShowDialog("AddAccountDialogView"); }));
 
         public IDialogService DialogService { get; set; }
-        public MainWindowViewModel( User user,IDialogService dialogService)
+        public MainWindowViewModel( User user,IDialogService dialogService,IEventAggregator eventAggregator)
         {
             LoginUser = user;
             DialogService = dialogService;
             LoadAllUserPassWordInfo();
+
+            eventAggregator.GetEvent<SaveAccountEvent>().Subscribe(SaveAccount,ThreadOption.UIThread);
+        }
+
+        /// <summary>
+        /// 存储的账户发生变动，需要序列化存储
+        /// </summary>
+        private void SaveAccount()
+        {
+           string json = JsonSerializer.Serialize<ObservableCollection<UserPassWordInfo>>(LoginUser.Accounts);
+
+            using (FileStream stream = new FileStream("Accounts.txt", FileMode.Create))
+            {
+
+                stream.Write(Encoding.UTF8.GetBytes(json));
+            }
         }
 
         /// <summary>
@@ -28,7 +49,23 @@ namespace PassWordStorageTool.ViewModels
         /// <exception cref="NotImplementedException"></exception>
         private void LoadAllUserPassWordInfo()
         {
-            
+            string json = "";
+            using (FileStream stream = File.OpenRead("Accounts.txt"))
+            {
+                byte[] buffer = new byte[10*1024];
+                int readLen = 0;
+                
+                do
+                {
+                   readLen= stream.Read(buffer, 0, buffer.Length);
+                    json+= Encoding.UTF8.GetString(buffer,0,readLen);
+                }
+                while (readLen == 1024);
+                
+            }
+
+            ObservableCollection<UserPassWordInfo> Accounts = JsonSerializer.Deserialize<ObservableCollection<UserPassWordInfo>>(json);
+            LoginUser.Accounts = Accounts ?? LoginUser.Accounts;
         }
 
     }

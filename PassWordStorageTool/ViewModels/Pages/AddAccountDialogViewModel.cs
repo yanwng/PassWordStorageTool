@@ -1,4 +1,5 @@
 ﻿using PassWordStorageTool.Entitys;
+using PassWordStorageTool.HelpClass;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,12 @@ namespace PassWordStorageTool.ViewModels.Pages
 
         private User LoginUser;
 
-        public AddAccountDialogViewModel(User _LoginUser)
+        IEventAggregator EventAggregator;
+
+        public AddAccountDialogViewModel(User _LoginUser,IEventAggregator _eventAggregator)
         {
             LoginUser = _LoginUser;
+            EventAggregator = _eventAggregator;
         }
 
         /// <summary>
@@ -51,8 +55,11 @@ namespace PassWordStorageTool.ViewModels.Pages
         {
             if (IsCanSubmit())
             {
-                if(!LoginUser.Accounts.Contains(AddUserPassWordInfo))
+                if (!LoginUser.Accounts.Contains(AddUserPassWordInfo))
+                {
                     LoginUser.Accounts.Add(AddUserPassWordInfo);
+                    EventAggregator.GetEvent<SaveAccountEvent>().Publish();
+                }
                 win.Close();
             }
             else
