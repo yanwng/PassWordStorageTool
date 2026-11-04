@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Prism.Dialogs;
+
 
 namespace PassWordStorageTool.ViewModels.Pages
 {
@@ -25,10 +27,18 @@ namespace PassWordStorageTool.ViewModels.Pages
         private void Delete_method(UserPassWordInfo info)
         {
             if (info == null) return;
-            MessageBoxResult messageBoxResult = MessageBox.Show($"是否删除{info.UserName}账户密码","删除提醒",MessageBoxButton.YesNo,MessageBoxImage.Question);
-            if (messageBoxResult == MessageBoxResult.Yes)
-                LoginUser.Accounts.Remove(info);
-            
+            //MessageBoxResult messageBoxResult = MessageBox.Show($"是否删除{info.UserName}账户密码","删除提醒",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            DialogParameters parameter = new DialogParameters();
+            parameter.Add("info", info);
+            DialogService.Show("ConfirmWindow" ,parameter, Result => 
+            {
+                if (Result.Result == ButtonResult.Yes)
+                    LoginUser.Accounts.Remove(info);
+            }, "Confirm");   
+
+
+
+
         }
 
         /// <summary>

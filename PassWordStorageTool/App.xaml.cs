@@ -25,6 +25,10 @@ namespace PassWordStorageTool
 
             //注册弹框内容父窗口
             containerRegistry.RegisterDialogWindow<DialogParentWindow>();
+            containerRegistry.RegisterDialogWindow<ConfirmParentWindow>("Confirm");
+
+            //注册确认弹窗
+            containerRegistry.RegisterDialog<ConfirmWindow>();
         }
     }
 
