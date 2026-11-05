@@ -22,5 +22,21 @@ namespace PassWordStorageTool.Views.Pages
         {
             InitializeComponent();
         }
+
+        private void grid_CopyingRowClipboardContent(object sender, DataGridRowClipboardEventArgs e)
+        {
+            var grid = (DataGrid)sender;
+            // 确保只处理当前选中行，避免多选时干扰其他行
+            if (grid.SelectedItems.Count != 1) return;
+
+            int colIndex = grid.CurrentCell.Column.DisplayIndex;
+            // 安全检查：确保索引在范围内
+            if (colIndex < 0 || colIndex >= e.ClipboardRowContent.Count) return;
+
+            // 取出当前聚焦单元格的内容，清空其余
+            var targetCell = e.ClipboardRowContent[colIndex];
+            e.ClipboardRowContent.Clear();
+            e.ClipboardRowContent.Add(targetCell);
+        }
     }
 }

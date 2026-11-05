@@ -26,7 +26,7 @@ namespace PassWordStorageTool.ViewModels
             DialogService = dialogService;
             LoadAllUserPassWordInfo();
 
-            eventAggregator.GetEvent<SaveAccountEvent>().Subscribe(SaveAccount,ThreadOption.UIThread);
+            eventAggregator.GetEvent<SaveAccountEvent>().Subscribe(SaveAccount,ThreadOption.BackgroundThread);
         }
 
         /// <summary>
