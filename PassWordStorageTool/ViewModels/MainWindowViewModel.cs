@@ -50,22 +50,32 @@ namespace PassWordStorageTool.ViewModels
         private void LoadAllUserPassWordInfo()
         {
             string json = "";
-            using (FileStream stream = File.OpenRead("Accounts.txt"))
-            {
-                byte[] buffer = new byte[10*1024];
-                int readLen = 0;
-                
-                do
-                {
-                   readLen= stream.Read(buffer, 0, buffer.Length);
-                    json+= Encoding.UTF8.GetString(buffer,0,readLen);
-                }
-                while (readLen == 1024);
-                
-            }
+            if (File.Exists("Accounts.txt")){
 
-            ObservableCollection<UserPassWordInfo> Accounts = JsonSerializer.Deserialize<ObservableCollection<UserPassWordInfo>>(json);
-            LoginUser.Accounts = Accounts ?? LoginUser.Accounts;
+                using (FileStream stream = File.OpenRead("Accounts.txt"))
+                {
+                    byte[] buffer = new byte[10 * 1024];
+                    int readLen = 0;
+
+                    do
+                    {
+                        readLen = stream.Read(buffer, 0, buffer.Length);
+                        json += Encoding.UTF8.GetString(buffer, 0, readLen);
+                    }
+                    while (readLen == 1024);
+
+                }
+            }
+            else
+            {
+                File.Create("Accounts.txt").Dispose();
+            }
+            ObservableCollection<UserPassWordInfo> accounts = new ObservableCollection<UserPassWordInfo>();
+            if (json != "")
+            {
+                accounts = JsonSerializer.Deserialize<ObservableCollection<UserPassWordInfo>>(json);
+            }
+            LoginUser.Accounts = accounts;
         }
 
     }

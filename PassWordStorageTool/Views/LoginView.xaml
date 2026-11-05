@@ -10,6 +10,7 @@
         FontSize="20"
         WindowStyle="None"
         AllowsTransparency="True"
+        Icon="/images/账户密码.ico"
         Opacity="1"        
         >
     <Grid >
