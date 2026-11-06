@@ -38,8 +38,8 @@ namespace PassWordStorageTool.ViewModels
 
             using (FileStream stream = new FileStream("Accounts.txt", FileMode.Create))
             {
-
-                stream.Write(Encoding.UTF8.GetBytes(json));
+                string key = EncryptionHelper.EncryptionKey(json);
+                stream.Write(Encoding.UTF8.GetBytes(key));
             }
         }
 
@@ -73,7 +73,8 @@ namespace PassWordStorageTool.ViewModels
             ObservableCollection<UserPassWordInfo> accounts = new ObservableCollection<UserPassWordInfo>();
             if (json != "")
             {
-                accounts = JsonSerializer.Deserialize<ObservableCollection<UserPassWordInfo>>(json);
+                string key = EncryptionHelper.DecryptionKey(json);
+                accounts = JsonSerializer.Deserialize<ObservableCollection<UserPassWordInfo>>(key);
             }
             LoginUser.Accounts = accounts;
         }
