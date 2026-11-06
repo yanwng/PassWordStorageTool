@@ -8,16 +8,16 @@
         Title="LoginView" Height="450" Width="500"
         WindowStartupLocation="CenterScreen"
         FontSize="20"
-        WindowStyle="None"
-        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        
         Icon="/images/账户密码.ico"
-        Opacity="1"        
+          Background="AliceBlue"     
         >
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">

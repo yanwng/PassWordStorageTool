@@ -13,7 +13,7 @@
         ResizeMode="NoResize"
         Height="800" Width="1200"
         FontSize="18"
-        
+        Background="AliceBlue"
         >
   
     <Grid >
