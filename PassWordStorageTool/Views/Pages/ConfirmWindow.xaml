@@ -14,7 +14,7 @@
 
 
     
-    <Border  BorderBrush="Red" BorderThickness="1">
+    <Border  BorderBrush="Red" BorderThickness="1" Background="AliceBlue">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -25,8 +25,11 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            
-            <TextBlock Grid.ColumnSpan="2" Text="{Binding PassInfo.UserName}" FontSize="20" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.ColumnSpan="2"  FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center">
+               <Run>是否确认删除账户：</Run>
+                <Run Foreground="Red" FontWeight="ExtraBold" Text="{Binding PassInfo.UserName}"/>
+            </TextBlock>
             
             <Button Grid.Row="1" Height="50" Width="120" 
                     HorizontalAlignment="Right" Margin="50,0"

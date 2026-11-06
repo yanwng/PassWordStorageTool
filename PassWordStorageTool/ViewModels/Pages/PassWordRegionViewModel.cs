@@ -45,14 +45,23 @@ namespace PassWordStorageTool.ViewModels.Pages
             //MessageBoxResult messageBoxResult = MessageBox.Show($"是否删除{info.UserName}账户密码","删除提醒",MessageBoxButton.YesNo,MessageBoxImage.Question);
             DialogParameters parameter = new DialogParameters();
             parameter.Add("info", info);
-            dialogService.Show("ConfirmWindow" ,parameter, Result => 
+            //dialogService.Show("ConfirmWindow" ,parameter, Result => 
+            //{
+            //    if (Result.Result == ButtonResult.Yes)
+            //    {
+            //        LoginUser.Accounts.Remove(info);
+            //        eventAggregator.GetEvent<SaveAccountEvent>().Publish();
+            //    }
+            //}, "Confirm");  
+            parameter.Add(KnownDialogParameters.WindowName, "Confirm");
+            dialogService.ShowDialog("ConfirmWindow", parameter, Result =>
             {
                 if (Result.Result == ButtonResult.Yes)
                 {
                     LoginUser.Accounts.Remove(info);
                     eventAggregator.GetEvent<SaveAccountEvent>().Publish();
                 }
-            }, "Confirm");   
+            });
 
 
 
